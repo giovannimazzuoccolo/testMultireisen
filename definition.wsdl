@@ -1,0 +1,166 @@
+<!--
+ 
+(c) Giovanni Mazzuoccolo
+-->
+<definitions xmlns:tns="it.multireisenTest.giovanniMazzuoccolo.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="it.multireisenTest.giovanniMazzuoccolo.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="SOAP test" targetNamespace="it.multireisenTest.giovanniMazzuoccolo.wsdl">
+<!--  definition of datatypes  -->
+<types>
+<schema xmlns="http://www.w3.org/2000/10/XMLSchema" targetNamespace="it.multireisenTest.giovanniMazzuoccolo.xsd">
+<element name="contact_id">
+<complexType>
+<all>
+<element name="value" type="int"/>
+</all>
+</complexType>
+</element>
+<element name="name">
+<complexType>
+<all>
+<element name="value" type="string"/>
+</all>
+</complexType>
+</element>
+<element name="email">
+<complexType>
+<all>
+<element name="value" type="string"/>
+</all>
+</complexType>
+</element>
+<element name="phone_number">
+<complexType>
+<all>
+<element name="value" type="string"/>
+</all>
+</complexType>
+</element>
+<element name="address">
+<complexType>
+<all>
+<element name="value" type="string"/>
+</all>
+</complexType>
+</element>
+<element name="list">
+<complexType>
+<all>
+<element name="value" type="string"/>
+</all>
+</complexType>
+</element>
+<element name="void">
+<complexType>
+<sequence/>
+</complexType>
+</element>
+</schema>
+</types>
+<!--  response messages  -->
+<message name="returns_contact_id">
+<part name="contact_id" type="xsd:contact_id"/>
+</message>
+<message name="returns_list">
+<part name="list" type="xsd:list"/>
+</message>
+<!--  request messages  -->
+<message name="addContact">
+<part name="name" type="xsd:name"/>
+<part name="email" type="xsd:email"/>
+<part name="phone_number" type="xsd:phone_number"/>
+<part name="address" type="xsd:address"/>
+</message>
+<message name="editContact">
+<part name="contact_id" type="xsd:contact_id"/>
+<part name="name" type="xsd:name"/>
+<part name="email" type="xsd:email"/>
+<part name="phone_number" type="xsd:phone_number"/>
+<part name="address" type="xsd:address"/>
+</message>
+<message name="deleteContact">
+<part name="contact_id" type="xsd:contact_id"/>
+</message>
+<message name="listContacts">
+<part name="void" type="xsd:void"/>
+</message>
+<message name="searchContact">
+<part name="name" type="xsd:name"/>
+</message>
+<!--  server's services  -->
+<portType name="Mutlireisen test">
+<operation name="addContact">
+<input message="tns:addContact"/>
+<output message="tns:returns_contact_id"/>
+</operation>
+<operation name="editContact">
+<input message="tns:editContact"/>
+<output message="tns:returns_contact_id"/>
+</operation>
+<operation name="deleteContact">
+<input message="tns:deleteContact"/>
+<output message="tns:returns_contact_id"/>
+</operation>
+<operation name="listContacts">
+<input message="tns:listContacts"/>
+<output message="tns:returns_list"/>
+</operation>
+<operation name="searchContact">
+<input message="tns:searchContact"/>
+<output message="tns:returns_list"/>
+</operation>
+</portType>
+<!--  server encoding  -->
+<binding name="Mutlireisen test_webservices" type="tns:Mutlireisen test">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="addContact">
+<soap:operation soapAction="urn:xmethods-delayed-quotes#addContact"/>
+<input>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="editContact">
+<soap:operation soapAction="urn:xmethods-delayed-quotes#editContact"/>
+<input>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="deleteContact">
+<soap:operation soapAction="urn:xmethods-delayed-quotes#deleteContact"/>
+<input>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listContacts">
+<soap:operation soapAction="urn:xmethods-delayed-quotes#listContacts"/>
+<input>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="searchContact">
+<soap:operation soapAction="urn:xmethods-delayed-quotes#searchContact"/>
+<input>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:xmethods-delayed-quotes" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<!--  access to service provider  -->
+<service name="test">
+<port name="test_0" binding="Mutlireisen test_webservices">
+<soap:address location="http://localhost:8888/endpoint.php"/>
+</port>
+</service>
+</definitions>
