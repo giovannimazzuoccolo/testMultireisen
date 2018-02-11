@@ -32,7 +32,7 @@
             $phone_numberSan = $this->vd->sanitizeString($phone_number);
             $addressSan = $this->vd->sanitizeString($address);
             
-            if(!$this->vd->sanitizeEmail($email)){
+            if(!$this->vd->validateEmail($email)){
                 throw new SoapFault("email","Please insert a real email");
             }
             
